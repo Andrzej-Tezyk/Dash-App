@@ -2,3 +2,4 @@ dash==2.18.2
 pandas==2.2.3
 ruff==0.9.5
 black==25.1.0
+dash_bootstrap_components==1.7.1
