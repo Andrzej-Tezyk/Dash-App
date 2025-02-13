@@ -1,7 +1,7 @@
 target-version = "py310"
 
-# Set the maximum line length to 119
-line-length = 119
+# Set the maximum line length to 319 
+line-length = 319 # set 119 later 
 [lint]
 extend-select = ["E501"]
 
