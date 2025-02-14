@@ -1,7 +1,7 @@
 import dash_bootstrap_components as dbc
 from dash import html
 
-figure = "wykres"
+
 
 dashboard = dbc.Row(
     dbc.Col(
