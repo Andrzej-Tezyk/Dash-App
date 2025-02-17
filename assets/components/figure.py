@@ -28,7 +28,7 @@ class Figure(dbc.Card):
                     dcc.Graph(
                         id={"type": "graph", "index": id},
                         responsive=True,
-                        style={"padding":"0.3rem", "height": "100%"},
+                        style={"padding": "0.3rem", "height": "100%"},
                     ),
                     size="lg",
                     color="danger",
