@@ -3,7 +3,7 @@ from dash import html, dcc
 
 
 class Figure(dbc.Card):
-    def __init__(self, title, id, description=None):
+    def __init__(self, title, fig_id, description=None):
         super().__init__(
             children=[
                 html.Div(  # plot header
@@ -14,7 +14,7 @@ class Figure(dbc.Card):
                                 "help",  # icon
                                 className="material-symbols-outlined d-flex",  # icon style
                             ),
-                            id={"type": "graph-info-btn", "index": id},
+                            id={"type": "graph-info-btn", "index": fig_id},
                             # a dictionary ID pattern to allow callback functions to target specific buttons dynamically
                             # MATCH - do somehthing on multiple elements for the same data
                             # ALL - do something on all elements of this type
@@ -26,7 +26,7 @@ class Figure(dbc.Card):
                 ),
                 dbc.Spinner(  # spinner when plot is loading
                     dcc.Graph(
-                        id={"type": "graph", "index": id},
+                        id={"type": "graph", "index": fig_id},
                         responsive=True,
                         style={"padding": "0.3rem", "height": "100%"},
                     ),
@@ -39,7 +39,7 @@ class Figure(dbc.Card):
                         dbc.ModalHeader(html.H4(title)),
                         dbc.ModalBody(dcc.Markdown(description, link_target="_blank")),
                     ],
-                    id={"type": "graph-modal", "index": id},
+                    id={"type": "graph-modal", "index": fig_id},
                     is_open=False,
                     size="md",
                 ),

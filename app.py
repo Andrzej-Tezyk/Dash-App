@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc
+from dash import Dash, html
 import dash_bootstrap_components as dbc
 
 from assets.filters import filters
