@@ -39,77 +39,37 @@ filters = dbc.Row(
                                         dbc.Col(
                                             [
                                                 dbc.Label(
-                                                    "Media Type",
-                                                    html_for="media-type",
-                                                ),
-                                                dcc.Checklist(
-                                                    ["Movie", "TV"],
-                                                    ["Movie", "TV"],
-                                                    id="media-type",
-                                                    className="d-flex justify-content-evenly",
-                                                    inline=True,
-                                                ),
-                                            ],
-                                            md=3,
-                                            sm=12,
-                                        ),
-                                        dbc.Col(
-                                            [
-                                                dbc.Label(
-                                                    "Platform",
-                                                    html_for="platform",
+                                                    "Company",
+                                                    html_for="company",
                                                 ),
                                                 dcc.Dropdown(
-                                                    id="platform", multi=True, value=[]
+                                                    id="company",
+                                                    multi=True,
+                                                    value=["test"],
                                                 ),
                                             ],
                                             md=9,
                                             sm=12,
                                         ),
-                                    ]
-                                ),
-                                dbc.Row(
-                                    [
                                         dbc.Col(
                                             [
                                                 dbc.Label(
-                                                    "Rating",
-                                                    html_for="rating",
+                                                    "Range",
+                                                    html_for="range",
                                                 ),
-                                                dcc.RangeSlider(
-                                                    0,
-                                                    10,
-                                                    0.5,
-                                                    marks=None,
-                                                    tooltip={
-                                                        "placement": "bottom",
-                                                        "always_visible": True,
+                                                dcc.Checklist(
+                                                    options={
+                                                        "Z1": " Zakres 1",
+                                                        "Z2": " Zakres 2",
+                                                        "Z3": " Zakres 3",
                                                     },
-                                                    id="rating",
+                                                    value=["Z1", "Z2", "Z3"],
+                                                    id="range",
+                                                    className="d-flex justify-content-evenly",
+                                                    inline=False,
                                                 ),
                                             ],
-                                            md=4,
-                                            sm=12,
-                                        ),
-                                        dbc.Col(
-                                            [
-                                                dbc.Label(
-                                                    "Release Year",
-                                                    html_for="release-year",
-                                                ),
-                                                dcc.RangeSlider(
-                                                    1902,
-                                                    2024,
-                                                    1,
-                                                    marks=None,
-                                                    tooltip={
-                                                        "placement": "bottom",
-                                                        "always_visible": True,
-                                                    },
-                                                    id="release-year",
-                                                ),
-                                            ],
-                                            md=8,
+                                            md=3,
                                             sm=12,
                                         ),
                                     ]
@@ -119,43 +79,20 @@ filters = dbc.Row(
                                         dbc.Col(
                                             [
                                                 dbc.Label(
-                                                    "Genre",
-                                                    html_for="genre",
+                                                    "Emission type",
+                                                    html_for="emission-type",
                                                 ),
                                                 dcc.Dropdown(
-                                                    id="genre", multi=True, value=[]
+                                                    id="emission-type",
+                                                    multi=True,
+                                                    value=[],
                                                 ),
                                             ],
-                                            md=4,
+                                            md=9,
                                             sm=12,
-                                        ),
-                                        dbc.Col(
-                                            [
-                                                dbc.Label(
-                                                    "Language",
-                                                    html_for="language",
-                                                ),
-                                                dcc.Dropdown(
-                                                    id="language", multi=True, value=[]
-                                                ),
-                                            ],
-                                            md=4,
-                                            sm=12,
-                                        ),
-                                        dbc.Col(
-                                            [
-                                                dbc.Label(
-                                                    "Country",
-                                                    html_for="country",
-                                                ),
-                                                dcc.Dropdown(
-                                                    id="country", multi=True, value=[]
-                                                ),
-                                            ],
-                                            md=4,
-                                            sm=12,
-                                        ),
-                                    ]
+                                        )
+                                    ],
+                                    justify="center",
                                 ),
                                 dbc.Row(
                                     dbc.Col(
