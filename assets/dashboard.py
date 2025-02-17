@@ -28,7 +28,8 @@ dashboard = dbc.Row(
                     ),
                     dbc.Col(
                         Figure(
-                            "Emisje tCO2 - Grupa Lącznie", fig_id="emisje_zakresy_lacznie"
+                            "Emisje tCO2 - Grupa Lącznie",
+                            fig_id="emisje_zakresy_lacznie",
                         ),
                         sm=12,
                         md=6,
