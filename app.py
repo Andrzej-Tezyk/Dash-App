@@ -1,14 +1,15 @@
-import dash
-from dash import Dash, html, dcc, Input, Output, State
+from dash import Dash, html
 import dash_bootstrap_components as dbc
 
-from assets.filters import filters  # nie ma dashboardu, navbara i about na razie
+from assets.filters import filters
+from assets.navbar import navbar
+from assets.dashboard import dashboard
 
 app = Dash(
     __name__,
     title="Python data visualisation",
     external_stylesheets=[
-        dbc.themes.BOOTSTRAP,
+        dbc.themes.LITERA,
         "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200",  # Icons
         "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap",  # Font
     ],
@@ -25,15 +26,12 @@ app.layout = html.Div(
                 "range": [],
             },
         ),
+        navbar,
         dbc.Container(
             dbc.Stack(
                 [
-                    dcc.Markdown(  # TBE - dodać link do Excela?
-                        "*Dane do tej aplikacji zostały wygenerowne przez [ManagementSolutions](https://www.managementsolutions.com/en)*",
-                        link_target="_blank",
-                        id="attribution",
-                    ),
                     filters,
+                    dashboard,
                 ],
                 gap=3,
             ),
