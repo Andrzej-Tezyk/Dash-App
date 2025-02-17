@@ -6,12 +6,12 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(
             dbc.NavLink(
                 html.Img(
-                    src="utils/github-mark-white.png",
+                    src="utils/plotly-logo.png",
                     alt="Plotly Dash Info",
                     id="plotly-dash-logo",
                 ),
                 href="https://plotly.com/",
-                target="_blank",
+                target="_blank", # open document in a new window tab
                 className="p-1",
             )
         ),
@@ -22,16 +22,16 @@ navbar = dbc.NavbarSimple(
                         "info",
                         className="material-symbols-outlined d-flex nav-span",
                     ),
-                    color="dark",
+                    color="primary",
                     id="page-info-btn",
                     n_clicks=0,
                 )
             )
         ),
     ],
-    brand="Streaming Metrics",
+    brand="Dashboard Info",
     brand_href="/",
     id="navbar",
-    color="dark",
-    dark=True,
+    color="primary",
+    dark=True, # text color
 )
