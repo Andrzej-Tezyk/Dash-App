@@ -3,6 +3,7 @@ import dash_bootstrap_components as dbc
 
 from assets.filters import filters
 from assets.navbar import navbar
+from assets.dashboard import dashboard
 
 app = Dash(
     __name__,
@@ -16,15 +17,13 @@ app = Dash(
 server = app.server
 
 app.layout = html.Div(
-    [navbar,
+    [
+        navbar,
         dbc.Container(
             dbc.Stack(
                 [
-                    dcc.Markdown(
-                        "*Data for this app is pulled from CompanyName excel",
-                        id="attribution",
-                    ),
                     filters,
+                    dashboard,
                 ],
                 gap=3,
             ),

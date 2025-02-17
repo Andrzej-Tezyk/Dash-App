@@ -11,7 +11,7 @@ navbar = dbc.NavbarSimple(
                     id="plotly-dash-logo",
                 ),
                 href="https://plotly.com/",
-                target="_blank", # open document in a new window tab
+                target="_blank",  # open document in a new window tab
                 className="p-1",
             )
         ),
@@ -22,7 +22,7 @@ navbar = dbc.NavbarSimple(
                         "info",
                         className="material-symbols-outlined d-flex nav-span",
                     ),
-                    color="primary",
+                    color="danger",
                     id="page-info-btn",
                     n_clicks=0,
                 )
@@ -32,6 +32,6 @@ navbar = dbc.NavbarSimple(
     brand="Dashboard Info",
     brand_href="/",
     id="navbar",
-    color="primary",
-    dark=True, # text color
+    color="danger",
+    dark=True,  # text color
 )
