@@ -15,7 +15,7 @@ filters = dbc.Row(
                         ),
                         dbc.Button(
                             [
-                                html.P("Filters", className="m-0"),
+                                html.P("Filters", className="m-0 fs-5"),
                                 html.Span(
                                     "keyboard_arrow_down",
                                     id="filter-header-icon",
@@ -28,7 +28,8 @@ filters = dbc.Row(
                             n_clicks=0,
                         ),
                     ],
-                    className="p-0 m-0",
+                    className="m-0",
+                    style={"padding": "0.1rem", "background-color": "white", "border": "none"},
                 ),
                 dbc.Collapse(
                     dbc.CardBody(
@@ -45,7 +46,7 @@ filters = dbc.Row(
                                                 dcc.Dropdown(
                                                     id="company",
                                                     multi=True,
-                                                    value=["test"],
+                                                    value=[],
                                                 ),
                                             ],
                                             md=9,
@@ -112,7 +113,8 @@ filters = dbc.Row(
                     id="filter-collapse",
                     is_open=False,
                 ),
-            ]
+            ],
+            style={"border-radius": "20px", "border": "none"},
         )
     ),
     id="filters",
