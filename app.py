@@ -102,6 +102,7 @@ def switch_filter_header_icon(is_open):
 
 
 
+
 @app.callback(
     Output("company", "options"),  # update dropdown options
     Input("filters-store", "data"),  # trigger on app load (or stored filters)
@@ -172,6 +173,37 @@ def update_boxplot(selected_companies):
             x="Spolka",
             y="Emisja CO2",
             color="Kategoria Emisji",
+        )
+
+    fig.update_layout(
+        xaxis_title="Company",
+        yaxis_title="Emission Category",
+        transition_duration=500,  # transition effect
+    )
+
+    return fig
+
+
+@app.callback(
+    Output({"type": "graph", "index": "emisje_kategorie"}, "figure"),  # ID must match the figure in the layout
+    Input("company", "value"),  # dropdown selection
+)
+def update_boxplot(selected_companies):
+    if not selected_companies:
+        raise dash.exceptions.PreventUpdate()
+
+    # filter based on selected companies
+    # filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)][["Spolka", "Emisja CO2", "Kategoria Emisji"]]
+
+    filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)]
+    filtered_df = filtered_df.sort_values(by="Emisja CO2", ascending=False)  # Sort by emission in descending order
+
+
+    fig = px.bar(
+            filtered_df,
+            x="Kategoria Emisji",
+            y="Emisja CO2",
+            color="Spolka",
         )
 
     fig.update_layout(
