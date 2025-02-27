@@ -1,5 +1,10 @@
 https://dash.plotly.com/dash-core-components/graph -> dash Graph
 
+https://dash.plotly.com/interactive-graphing -> dash guide to interactive visualizations
+
+https://dash.plotly.com/urls -> dash multipage apps
+
+
 https://plotly.com/python/creating-and-updating-figures/?_gl=1*k30ank*_gcl_au*Njg0ODEwNTg5LjE3MzgzMzYwMzk.*_ga*NDM0MDgzNjgzLjE3MzgzMzYwNDA.*_ga_6G7EE0JNSC*MTc0MDY2OTMwMS4xMS4wLjE3NDA2NjkzMDEuNjAuMC4w -> figures in plotly in depth
 
 https://plotly.com/python/histograms/?_gl=1*1x908t9*_gcl_au*Njg0ODEwNTg5LjE3MzgzMzYwMzk.*_ga*NDM0MDgzNjgzLjE3MzgzMzYwNDA.*_ga_6G7EE0JNSC*MTc0MDY2OTMwMS4xMS4xLjE3NDA2Njk1MDAuNjAuMC4w -> plotly indepth guide for histograms (search for similar for other plot types)
@@ -8,3 +13,14 @@ https://plotly.com/python-api-reference/plotly.express.html?_gl=1*15qnclq*_gcl_a
 https://plotly.com/python/reference/?_gl=1*15qnclq*_gcl_au*Njg0ODEwNTg5LjE3MzgzMzYwMzk.*_ga*NDM0MDgzNjgzLjE3MzgzMzYwNDA.*_ga_6G7EE0JNSC*MTc0MDY2OTMwMS4xMS4xLjE3NDA2Njk1MTcuNDMuMC4w -> plotly more docs
 
 https://plotly.com/python/renderers/?_gl=1*3sevg8*_gcl_au*Njg0ODEwNTg5LjE3MzgzMzYwMzk.*_ga*NDM0MDgzNjgzLjE3MzgzMzYwNDA.*_ga_6G7EE0JNSC*MTc0MDY2OTMwMS4xMS4xLjE3NDA2Njk1OTMuNDMuMC4w -> plotly displaing figures tutoria
+
+
+
+How to preserve the UI state (zoom level etc.) of a Graph when updating the Graph in a callback -> https://community.plot.ly/t/preserving-ui-state-like-zoom-in-dcc-graph-with-uirevision/15793
+Graph transitions for smooth transitions or animations on Graph updates -> https://community.plot.ly/t/exploring-a-transitions-api-for-dcc-graph/15468
+
+
+
+https://plotly.com/javascript/?_gl=1*faqh3n*_gcl_au*Njg0ODEwNTg5LjE3MzgzMzYwMzk.*_ga*NDM0MDgzNjgzLjE3MzgzMzYwNDA.*_ga_6G7EE0JNSC*MTc0MDY2OTMwMS4xMS4xLjE3NDA2NzE2OTAuNjAuMC4w -> js library used to render Graphs; by default a specific version of the js library is included in py library, but can be overwritten
+- can modified when there is a need to use newer or older version for js package (is usulally backward compatible)
+- IMPORTANT: get only parts of js library you need to optimize your app! (another usecase; partial bundles can be found on the Internet)
