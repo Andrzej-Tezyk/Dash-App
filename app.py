@@ -1,10 +1,16 @@
 import dash
 from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
 
 from assets.filters import filters
 from assets.navbar import navbar
 from assets.dashboard import dashboard
+
+data_categories = pd.read_csv("data/data_emisje.csv")
+
+data_scopes = pd.read_csv("data/data_zakresy.csv")
 
 app = Dash(
     __name__,
@@ -24,7 +30,7 @@ app.layout = html.Div(
             data={
                 "company": [],
                 "emission-type": [],
-                "range": [],
+                "scope": [],
             },
         ),
         navbar,
@@ -44,7 +50,7 @@ app.layout = html.Div(
 )
 
 
-# Layout callbacks (collapse, modals, etc)
+# layout callbacks (collapse, modals, etc)
 @app.callback(  # filter header
     Output("filter-collapse", "is_open"),
     Input("filter-header-btn", "n_clicks"),
@@ -56,6 +62,7 @@ def open_close_filter_collapse(n, current_state):
     return not current_state
 
 
+# open-close filter tab
 @app.callback(  # filter header icon
     Output("filter-header-icon", "children"), Input("filter-collapse", "is_open")
 )
@@ -66,7 +73,124 @@ def switch_filter_header_icon(is_open):
         return "keyboard_arrow_down"
 
 
-# Filter callbacks (initialization, storing, clearing)
+@app.callback(
+    Output("company", "options"),  # update dropdown options
+    Input("filters-store", "data"),  # trigger on app load (or stored filters)
+)
+def update_company_dropdown(_):
+    companies = data_categories["Spolka"].unique()
+    return [{"label": company, "value": company} for company in companies]
+
+
+@app.callback(
+    Output("company", "value"),  # update selected value
+    Input("company", "options"),  # when options update
+)
+def set_default_company(options):
+    if options:
+        return [
+            option["value"] for option in options
+        ]  # first company selected by default
+    return []
+
+
+"""
+@app.callback(
+    Output("company", "options"),  # Update dropdown options
+    Input("filters-store", "data"),  # Trigger on app load (or stored filters)
+)
+def update_company_dropdown(_):
+    companies = data_categories["Spolka"].unique()
+
+    # Add "Select All" option
+    options = [{"label": "Select All", "value": "ALL"}] + [
+        {"label": company, "value": company} for company in companies
+    ]
+
+    return options
+
+def set_default_company(options, selected_values):
+    if not selected_values:
+        return []
+
+    all_companies = [opt["value"] for opt in options if opt["value"] != "ALL"]
+
+    if "ALL" in selected_values:
+        return all_companies  # all companies when "Select All" is chosen
+    elif set(selected_values) == set(all_companies):
+        return ["ALL"]  # all companies are manually selected, switch to "ALL"
+    return selected_values
+"""
+
+
+@app.callback(
+    Output(
+        {"type": "graph", "index": "emisje_spolki"}, "figure"
+    ),  # ID must match the figure in the layout
+    Input("company", "value"),  # dropdown selection
+)
+def update_boxplot(selected_companies):
+    if not selected_companies:
+        raise dash.exceptions.PreventUpdate()
+
+    # filter based on selected companies
+    # filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)][["Spolka", "Emisja CO2", "Kategoria Emisji"]]
+
+    filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)]
+    filtered_df = filtered_df.sort_values(
+        by="Emisja CO2", ascending=False
+    )  # Sort by emission in descending order
+
+    fig = px.bar(
+        filtered_df,
+        x="Spolka",
+        y="Emisja CO2",
+        color="Kategoria Emisji",
+    )
+
+    fig.update_layout(
+        xaxis_title="Company",
+        yaxis_title="Emission Category",
+        transition_duration=500,  # transition effect
+    )
+
+    return fig
+
+
+"""
+@app.callback(
+    Output(
+        {"type": "graph", "index": "emisje_kategorie"}, "figure"
+    ),  # ID must match the figure in the layout
+    Input("company", "value"),  # dropdown selection
+)
+def update_boxplot(selected_companies):
+    if not selected_companies:
+        raise dash.exceptions.PreventUpdate()
+
+    # filter based on selected companies
+    # filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)][["Spolka", "Emisja CO2", "Kategoria Emisji"]]
+
+    filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)]
+    filtered_df = filtered_df.sort_values(
+        by="Emisja CO2", ascending=False
+    )  # Sort by emission in descending order
+
+    fig = px.bar(
+        filtered_df,
+        x="Kategoria Emisji",
+        y="Emisja CO2",
+        color="Spolka",
+    )
+
+    fig.update_layout(
+        xaxis_title="Company",
+        yaxis_title="Emission Category",
+        transition_duration=500,  # transition effect
+    )
+
+    return fig
+"""
 
 
 if __name__ == "__main__":

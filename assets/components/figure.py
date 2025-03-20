@@ -45,5 +45,5 @@ class Figure(dbc.Card):
                 ),
             ],
             className="mb-3 figure-card",
-            style={"border-radius": "20px"},
+            style={"border-radius": "20px", "height": "600px"},
         )
