@@ -29,7 +29,11 @@ filters = dbc.Row(
                         ),
                     ],
                     className="m-0",
-                    style={"padding": "0.1rem", "background-color": "white", "border": "none"},
+                    style={
+                        "padding": "0.1rem",
+                        "background-color": "white",
+                        "border": "none",
+                    },
                 ),
                 dbc.Collapse(
                     dbc.CardBody(
