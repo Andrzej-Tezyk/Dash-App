@@ -78,7 +78,7 @@ def switch_filter_header_icon(is_open):
     Input("filters-store", "data"),  # trigger on app load (or stored filters)
 )
 def update_company_dropdown(_):
-    companies = data_categories["Spolka"].unique()
+    companies = data_categories["spolka"].unique()
     return [{"label": company, "value": company} for company in companies]
 
 
@@ -136,16 +136,16 @@ def update_boxplot(selected_companies):
     # filter based on selected companies
     # filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)][["Spolka", "Emisja CO2", "Kategoria Emisji"]]
 
-    filtered_df = data_categories[data_categories["Spolka"].isin(selected_companies)]
+    filtered_df = data_categories[data_categories["spolka"].isin(selected_companies)]
     filtered_df = filtered_df.sort_values(
-        by="Emisja CO2", ascending=False
+        by="emisja_co2", ascending=False
     )  # Sort by emission in descending order
 
     fig = px.bar(
         filtered_df,
-        x="Spolka",
-        y="Emisja CO2",
-        color="Kategoria Emisji",
+        x="spolka",
+        y="emisja_co2",
+        color="kategoria_emisji",
     )
 
     fig.update_layout(
